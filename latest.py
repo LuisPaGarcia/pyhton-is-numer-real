@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import filedialog
 from io import open
 from PIL import ImageTk, Image
-
+from tkinter import messagebox
 window = Tk()
 title = " Bloc de Notas"
 window.title(title)
@@ -17,6 +17,12 @@ url_file = ""
 
 def new_file():
     global url_file
+    content = text.get(1.0, "end-1c")
+    if content != "":
+        answer = messagebox.askyesno(
+            "Atencion", "Desea guardar el contenido actual?")
+        if answer == True:
+            save_as_file()
     text.delete(1.0, "end")  # Borramos desde el caracter 1 hasta el ultimo
     url_file = ""
     window.title(url_file + title)
